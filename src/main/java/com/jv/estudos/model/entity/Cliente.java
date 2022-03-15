@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -26,9 +30,12 @@ public class Cliente {
 	@EqualsAndHashCode.Include
 	private Integer id;
 	
+	@NotEmpty
 	@Column(nullable = false, length = 150)
 	private String nome;
 	
+	@NotNull
+	@CPF
 	@Column(nullable = false, length = 11)
 	private String cpf;
 	
