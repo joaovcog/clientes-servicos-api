@@ -1,5 +1,8 @@
 package com.jv.estudos.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -33,6 +36,29 @@ public class ClienteController {
 	@GetMapping("/{id}")
 	public Cliente buscarPorId(@PathVariable Integer id) {
 		return clienteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+	
+	@PutMapping("/{id}")
+	public Cliente atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado) {
+		Optional<Cliente> optClienteExistente = clienteRepository.findById(id);
+		
+		if (optClienteExistente.isPresent()) {
+			Cliente clienteExistente = optClienteExistente.get();
+			
+			BeanUtils.copyProperties(clienteAtualizado, clienteExistente, "id", "dataCadastro");
+			return clienteRepository.save(clienteExistente);
+		}
+		
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		
+//		clienteRepository
+//			.findById(id)
+//			.map(cliente -> {
+//				BeanUtils.copyProperties(clienteAtualizado, cliente, "id", "dataCadastro");
+//				
+//				return clienteRepository.save(cliente);
+//			})
+//			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 	
 	@DeleteMapping("/{id}")
