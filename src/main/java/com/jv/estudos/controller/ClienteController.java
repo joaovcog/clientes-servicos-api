@@ -41,7 +41,7 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/{id}")
-	public Cliente atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado) {
+	public Cliente atualizar(@PathVariable Integer id, @RequestBody @Valid Cliente clienteAtualizado) {
 		Optional<Cliente> optClienteExistente = clienteRepository.findById(id);
 		
 		if (optClienteExistente.isPresent()) {
@@ -51,7 +51,7 @@ public class ClienteController {
 			return clienteRepository.save(clienteExistente);
 		}
 		
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado.");
 		
 //		clienteRepository
 //			.findById(id)
@@ -69,7 +69,7 @@ public class ClienteController {
 		try {
 			clienteRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado.");
 		}
 //		clienteRepository.findById(id).map(cliente -> {
 //			clienteRepository.delete(cliente);
