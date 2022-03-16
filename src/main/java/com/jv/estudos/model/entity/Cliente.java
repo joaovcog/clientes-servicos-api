@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -30,12 +30,12 @@ public class Cliente {
 	@EqualsAndHashCode.Include
 	private Integer id;
 	
-	@NotEmpty
+	@NotBlank(message = "{campo.nome.obrigatorio}")
 	@Column(nullable = false, length = 150)
 	private String nome;
 	
-	@NotNull
-	@CPF
+	@NotNull(message = "{campo.cpf.obrigatorio}")
+	@CPF(message = "{campo.cpf.invalido}")
 	@Column(nullable = false, length = 11)
 	private String cpf;
 	

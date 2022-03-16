@@ -2,6 +2,8 @@ package com.jv.estudos.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,7 +31,7 @@ public class ClienteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente salvar(@RequestBody Cliente cliente) {
+	public Cliente salvar(@RequestBody @Valid Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
 	
