@@ -1,5 +1,6 @@
 package com.jv.estudos.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -8,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,7 @@ import com.jv.estudos.model.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/clientes")
+@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 
 	@Autowired
@@ -32,7 +35,13 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar(@RequestBody @Valid Cliente cliente) {
+		System.out.println(cliente.getId());
 		return clienteRepository.save(cliente);
+	}
+	
+	@GetMapping
+	public List<Cliente> buscarTodos() {
+		return clienteRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
