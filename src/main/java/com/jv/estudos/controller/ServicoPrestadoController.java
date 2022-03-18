@@ -5,9 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.jv.estudos.model.dto.ServicoPrestadoDTO;
 import com.jv.estudos.model.entity.Cliente;
 import com.jv.estudos.model.entity.ServicoPrestado;
 import com.jv.estudos.model.repository.ClienteRepository;
@@ -38,7 +40,7 @@ public class ServicoPrestadoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ServicoPrestado salvar(@RequestBody com.jv.estudos.model.dto.ServicoPrestadoDTO servicoPrestadoDto) {
+	public ServicoPrestado salvar(@RequestBody @Valid ServicoPrestadoDTO servicoPrestadoDto) {
 		Optional<Cliente> optCliente = clienteRepository.findById(servicoPrestadoDto.getIdCliente());
 		Cliente cliente = optCliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente inexistente."));
 		
