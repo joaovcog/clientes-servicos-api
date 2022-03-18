@@ -26,7 +26,6 @@ import com.jv.estudos.model.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/clientes")
-@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 
 	@Autowired
