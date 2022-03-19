@@ -11,13 +11,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.jv.estudos.security.UsuarioService;
+import com.jv.estudos.security.AppUserDetailsService;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private AppUserDetailsService usuarioService;
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {

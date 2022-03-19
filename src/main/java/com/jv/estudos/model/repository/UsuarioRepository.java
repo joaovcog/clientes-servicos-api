@@ -9,5 +9,7 @@ import com.jv.estudos.model.entity.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	Optional<Usuario> findByUsuario(String usuario);
+
+	boolean existsByUsuario(String usuario);
 	
 }

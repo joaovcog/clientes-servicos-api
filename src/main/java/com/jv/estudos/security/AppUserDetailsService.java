@@ -11,7 +11,7 @@ import com.jv.estudos.model.entity.Usuario;
 import com.jv.estudos.model.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class AppUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;

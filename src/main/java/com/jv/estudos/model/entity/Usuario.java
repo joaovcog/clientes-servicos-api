@@ -24,17 +24,18 @@ public class Usuario {
 	@EqualsAndHashCode.Include
 	private Integer id;
 	
-	@NotBlank
+	@NotBlank(message = "{campo.nome.obrigatorio}")
 	private String nome;
 	
 	@Email
+	@NotBlank(message = "{campo.email.obrigatorio}")
 	private String email;
 	
-	@NotBlank
+	@NotBlank(message = "{campo.usuario.obrigatorio}")
 	@Column(unique = true, length = 20)
 	private String usuario;
 	
-	@NotBlank
+	@NotBlank(message = "{campo.senha.obrigatorio}")
 	@Column(length = 20)
 	private String senha;
 	
