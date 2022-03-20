@@ -36,7 +36,6 @@ public class Usuario {
 	private String usuario;
 	
 	@NotBlank(message = "{campo.senha.obrigatorio}")
-	@Column(length = 20)
 	private String senha;
 	
 	private Boolean ativo;

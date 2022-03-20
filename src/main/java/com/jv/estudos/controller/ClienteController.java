@@ -33,7 +33,6 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar(@RequestBody @Valid Cliente cliente) {
-		System.out.println(cliente.getId());
 		return clienteRepository.save(cliente);
 	}
 	

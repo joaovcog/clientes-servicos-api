@@ -20,6 +20,7 @@ public class AppUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepository.findByUsuario(username)
 					.orElseThrow(() -> new UsernameNotFoundException("Usuário inválido."));
+		
 		return User
 				.builder()
 				.username(usuario.getUsuario())
