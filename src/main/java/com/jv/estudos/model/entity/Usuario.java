@@ -27,7 +27,7 @@ public class Usuario {
 	@NotBlank(message = "{campo.nome.obrigatorio}")
 	private String nome;
 	
-	@Email
+	@Email(message = "{campo.email.invalido}")
 	@NotBlank(message = "{campo.email.obrigatorio}")
 	private String email;
 	
